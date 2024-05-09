@@ -1,6 +1,10 @@
 import pathlib
 from huggingface_hub import snapshot_download
 from transcoders_slim.transcoder import Transcoder
+import sys
+# Assuming `sae_training` is inside 'transformers_slim', add its parent directory to sys.path
+project_dir = pathlib.Path(__file__).parent.parent.absolute()
+sys.path.insert(0, str(project_dir / 'transcoders_slim'))
 
 REPO_ID = "pchlenski/gpt2-transcoders"
 
