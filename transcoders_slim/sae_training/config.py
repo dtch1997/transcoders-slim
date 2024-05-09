@@ -24,9 +24,9 @@ class RunnerConfig(ABC):
     is_dataset_tokenized: bool = True
     context_size: int = 128
     use_cached_activations: bool = False
-    cached_activations_path: Optional[
-        str
-    ] = None  # Defaults to "activations/{dataset}/{model}/{full_hook_name}_{hook_point_head_index}"
+    cached_activations_path: Optional[str] = (
+        None  # Defaults to "activations/{dataset}/{model}/{full_hook_name}_{hook_point_head_index}"
+    )
 
     # SAE Parameters
     d_in: int = 512
@@ -92,7 +92,7 @@ class LanguageModelSAERunnerConfig(RunnerConfig):
     sparse_connection_use_W_enc: bool = True
 
     # Resampling protocol args
-    use_ghost_grads: bool = False # want to change this to true on some timeline.
+    use_ghost_grads: bool = False  # want to change this to true on some timeline.
     feature_sampling_window: int = 2000
     feature_sampling_method: str = "Anthropic"  # None or Anthropic
     resample_batches: int = 32
@@ -169,16 +169,18 @@ class LanguageModelSAERunnerConfig(RunnerConfig):
         print(
             f"n_tokens_per_dead_feature_window (millions): {(self.dead_feature_window * self.context_size * self.train_batch_size) / 10 **6}"
         )
-        if self.feature_sampling_method != None:
+        if self.feature_sampling_method is not None:
             print(f"We will reset neurons {n_dead_feature_samples} times.")
-        
+
         if self.use_ghost_grads:
             print("Using Ghost Grads.")
-        
+
         print(
             f"We will reset the sparsity calculation {n_feature_window_samples} times."
         )
-        print(f"Number of tokens when resampling: {self.resample_batches * self.store_batch_size}")
+        print(
+            f"Number of tokens when resampling: {self.resample_batches * self.store_batch_size}"
+        )
         # print("Number tokens in dead feature calculation window: ", self.dead_feature_window * self.train_batch_size)
         print(
             f"Number tokens in sparsity calculation window: {self.feature_sampling_window * self.train_batch_size:.2e}"

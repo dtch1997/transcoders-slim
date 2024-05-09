@@ -1,7 +1,9 @@
 import torch
+
 # import pytest
-from transcoders_slim.transcoder import Transcoder # noqa
-from transcoders_slim.load_pretrained import download, load_pretrained, FILENAMES
+from transcoders_slim.transcoder import Transcoder  # noqa
+from transcoders_slim.load_pretrained import load_pretrained
+
 
 def test_load_pretrained():
     transcoders = load_pretrained()
