@@ -1,3 +1,5 @@
+# NOTE: unfortunately we need the config class to load the model, which is dumb but whatever
+
 from abc import ABC
 from dataclasses import dataclass
 from typing import Optional
