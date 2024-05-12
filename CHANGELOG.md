@@ -2,6 +2,13 @@
 
 
 
+## v0.2.0 (2024-05-12)
+
+### Feature
+
+* feat: bump version ([`1c5da65`](https://github.com/dtch1997/transcoders-slim/commit/1c5da65a8d542b313c2f360b6f09262a35db3479))
+
+
 ## v0.1.0 (2024-05-12)
 
 ### Chore
