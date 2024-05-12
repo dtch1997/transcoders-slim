@@ -669,8 +669,12 @@ class SparseAutoencoder(HookedRootModule):
                 if torch.backends.mps.is_available():
                     state_dict = torch.load(path, map_location="mps")
                     state_dict["cfg"].device = "mps"
+                elif torch.cuda.is_available():
+                    state_dict = torch.load(path, map_location="cuda")
+                    state_dict["cfg"].device = "cuda"
                 else:
-                    state_dict = torch.load(path)
+                    state_dict = torch.load(path, map_location="cpu")
+                    state_dict["cfg"].device = "cpu"
             except Exception as e:
                 raise IOError(f"Error loading the state dictionary from .pt file: {e}")
 
