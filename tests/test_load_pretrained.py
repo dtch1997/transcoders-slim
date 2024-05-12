@@ -10,7 +10,7 @@ def test_load_pretrained():
     assert len(transcoders) == 12
 
     # test the transcoder
-    transcoder = list(transcoders.values())[0]
+    transcoder: Transcoder = list(transcoders.values())[0]
     d_in = transcoder.d_in
     d_tr = transcoder.d_sae
     seq_len = 32

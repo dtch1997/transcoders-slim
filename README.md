@@ -1,31 +1,36 @@
-# PDM Python Project Template
+# transcoders-slim
 ![Github Actions](https://github.com/90HH/transcoders-slim/actions/workflows/tests.yaml/badge.svg)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![pdm-managed](https://img.shields.io/badge/pdm-managed-blueviolet)](https://pdm-project.org)
 [![Checked with pyright](https://microsoft.github.io/pyright/img/pyright_badge.svg)](https://microsoft.github.io/pyright/)
 
-This is a PDM template that can be used to quickly set up a new repository with several quality-of-life features:
-1. Pre-commit hooks to enforce style and types
-2. A CI workflow to support automated testing, semantic versioning, and package release
-
-More features that could be added at some point: 
-- Coverage reports with CodeCov
-- Badges for lint, test, release
-- Standard templates for Docker / Singularity containers to support containerized deployment
-- Documentation with Sphinx
-- Standard issue templates
-
-Install the template via: 
-```
-pdm init https://github.com/90HH/transcoders-slim
-```
-Then replace this section with your own text
-
 # Quickstart
 
+
+## Installation
 ```bash
 pip install transcoders-slim
 ```
+## Usage
+
+Load pre-trained transcoders from Jacob Dunefsky's repository: https://github.com/jacobdunefsky/transcoder_circuits
+```python
+from transcoders.transcoder import Transcoder
+from transcoders_slim.load_pretrained import load_pretrained
+transcoders: dict[str, Transcoder] = load_pretrained()
+for name, transcoder in transcoders.items():
+    print(name, transcoder)
+```
+
+Run a transcoder: 
+```
+d_in = transcoder.d_in
+d_tr = transcoder.d_sae
+seq_len = 32
+tr_in = torch.zeros(1, seq_len, d_in).to(transcoder.device)
+tr_out, tr_hid = transcoder(tr_in)[:2]
+```
+
 
 # Development
 
