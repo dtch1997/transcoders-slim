@@ -2,6 +2,13 @@
 
 
 
+## v0.2.2 (2024-05-22)
+
+### Fix
+
+* fix: relax einops version ([`0f0d475`](https://github.com/dtch1997/transcoders-slim/commit/0f0d475c8c364bc9cb91d5cce573981165712ce4))
+
+
 ## v0.2.1 (2024-05-17)
 
 ### Fix
